@@ -2,21 +2,27 @@
 
 <launch>
 
-    <!-- Publish urdf zed -->
-    <arg name="publish_urdf"          default="true" />
+	<arg name="online" default="true"/>
 
-    <!-- Zed wrapper node -->
+	<!-- Publish urdf zed -->
+	<arg name="publish_urdf"          default="true" />
 
-    <!-- ROS URDF description of the ZED -->
-    <group if="$(arg publish_urdf)">
-        <param name="zed_description" textfile="$(find zed_wrapper)/urdf/zed.urdf" />
-        <node name="zed_state_publisher" pkg="robot_state_publisher" type="state_publisher">
-            <remap from="robot_description" to="zed_description" />
-        </node>
-    </group>
+	<!-- Zed wrapper node -->
+	<group if="$(eval online == true)">
+		<node pkg="zed_wrapper" type="zed_wrapper" name="zed_wrapper" output="screen" args="$(find zed_wrapper)/cfg/config_zed.json" />
+	</group>
 
 
-    <!-- TF publisher -->
+	<!-- ROS URDF description of the ZED -->
+	<group if="$(arg publish_urdf)">
+		<param name="zed_description" textfile="$(find zed_wrapper)/urdf/zed.urdf" />
+		<node name="zed_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+			<remap from="robot_description" to="zed_description" />
+		</node>
+	</group>
+
+
+	<!-- TF publisher -->
 	<node pkg="tf2_ros" type="static_transform_publisher" name="zed_base_link4"
 	args="0 0 0 0 0 0 zed_current_frame zed_center" />
 	<node pkg="tf2_ros" type="static_transform_publisher" name="zed_base_link5"

@@ -12,12 +12,6 @@
 typedef pcl::PointXYZRGBNormal PointType_;
 
 int main (int _argc, char** _argv) {
-	// Load arguments
-	if (_argc != 2) {
-		std::cout << "Bad input argument, provide config file" << std::endl;
-		return false;
-	}
-
 	std::ifstream file(_argv[1]);
 	if (!file.is_open()) {
 		std::cout << "Failed to open config file" << std::endl;
