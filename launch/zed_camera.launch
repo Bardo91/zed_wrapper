@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <!-- Publish urdf zed -->
+    <arg name="publish_urdf"          default="true" />
+
+    <!-- Zed wrapper node -->
+    
+	
+    <!-- TF publisher -->
+    <node name="tf" pkg="tf" type="static_transform_publisher" output="screen" args="0 0 0 0 0 0 zed_current_frame ZED_left_camera 100">
+    </node>
+
+    <!-- ROS URDF description of the ZED -->
+    <group if="$(arg publish_urdf)">
+        <param name="zed_description" textfile="$(find zed_wrapper)/urdf/zed.urdf" />
+        <node name="zed_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+            <remap from="robot_description" to="zed_description" />
+        </node>
+    </group>
+
+</launch>

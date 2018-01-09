@@ -40,7 +40,7 @@ catkin_package(
   CATKIN_DEPENDS roscpp std_msgs rgbd_tools cv_bridge image_transport sensor_msgs
 )
 
-find_package(PCL 1.8.0 REQUIRED)
+find_package(PCL REQUIRED)
 include_directories(${PCL_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})

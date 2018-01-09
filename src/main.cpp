@@ -38,11 +38,11 @@ int main (int _argc, char** _argv) {
 
 	ros::NodeHandle nh;
 	image_transport::ImageTransport it(nh);
-	image_transport::Publisher leftStream = it.advertise("/stereo_camera/camera/left/image_rect_color", 1);
-	image_transport::Publisher rightStream = it.advertise("/stereo_camera/camera/right/image_rect_color", 1);
+	image_transport::Publisher leftStream = it.advertise("/stereo_camera/left/image_rect_color", 1);
+	image_transport::Publisher rightStream = it.advertise("/stereo_camera/right/image_rect_color", 1);
 	
-	ros::Publisher leftInfoStream = nh.advertise<sensor_msgs::CameraInfo>("/stereo_camera/camera/left/camera_info",1);
-	ros::Publisher rightInfoStream = nh.advertise<sensor_msgs::CameraInfo>("/stereo_camera/camera/right/camera_info",1);
+	ros::Publisher leftInfoStream = nh.advertise<sensor_msgs::CameraInfo>("/stereo_camera/left/camera_info",1);
+	ros::Publisher rightInfoStream = nh.advertise<sensor_msgs::CameraInfo>("/stereo_camera/right/camera_info",1);
 
 	// Camera Initialization
 	std::cout << "Configuring camera" << std::endl;
