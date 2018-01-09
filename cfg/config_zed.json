@@ -1,0 +1,16 @@
+{
+    "device":
+        {
+            "type":"zed",                        
+            "indexZed":0,
+            "resolution":
+                {
+                    "width":1280,
+                    "height":720
+                }
+        },
+    "cloud":
+        {
+            "type":"null"
+        }
+}
