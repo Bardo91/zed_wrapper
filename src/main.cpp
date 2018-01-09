@@ -87,7 +87,9 @@ int main (int _argc, char** _argv) {
 		cv::Mat left, right;
 		camera->rgb(left, right);
 		sensor_msgs::ImagePtr leftImage = cv_bridge::CvImage(std_msgs::Header(), "bgr8", left).toImageMsg();
+		leftImage->header.frame_id = "zed_left_camera";
 		sensor_msgs::ImagePtr rightImage = cv_bridge::CvImage(std_msgs::Header(), "bgr8", right).toImageMsg();
+		rightImage->header.frame_id = "zed_right_camera";
 
 		leftImage->header.stamp = stamp;
 		rightImage->header.stamp = stamp;
